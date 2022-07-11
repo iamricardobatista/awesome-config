@@ -390,6 +390,15 @@ local globalkeys = gears.table.join(
                 "maim -s --hidecursor /tmp/screenshot.png && xclip -selection clipboard /tmp/screenshot.png -t image/png"
             )
         end
+    ),
+    awful.key(
+        { modkey, "Control" },
+        "Print",
+        function ()
+            awful.util.spawn_with_shell(
+                "maim -s --hidecursor /tmp/screenshot.png && tesseract -l eng /tmp/screenshot.png /tmp/copyfile && xclip -selection clipboard /tmp/copyfile.txt"
+            )
+        end
     )
 )
 
