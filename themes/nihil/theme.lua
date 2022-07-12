@@ -10,6 +10,19 @@ local themes_path = "~/.config/awesome/themes/"
 
 local theme = {}
 
+local wallpapers_folder = '~/wallpapers/'
+
+local function pick(list)
+    local index = 0
+    local array = {}
+    for element in list do
+        index = index + 1
+        array[index] = element
+    end
+    math.randomseed(os.time())
+    return wallpapers_folder .. array[math.random(index)]
+end
+
 theme.font          = "sans 8"
 
 theme.bg_normal     = "#222222"
@@ -96,7 +109,7 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path.."nihil/titlebar/m
 theme.titlebar_maximized_button_normal_active = themes_path.."nihil/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = themes_path.."nihil/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path.."nihil/background.png"
+theme.wallpaper = pick(io.popen('ls ' .. wallpapers_folder):lines())
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."nihil/layouts/fairhw.png"
